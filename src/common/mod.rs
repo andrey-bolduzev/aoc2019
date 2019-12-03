@@ -15,6 +15,6 @@ pub fn read_comma_separated(filename: &str) -> Vec<usize> {
         .collect()
 }
 
-fn read_file(filename: &str) -> String {
+pub fn read_file(filename: &str) -> String {
     fs::read_to_string(&filename).unwrap()
 }
