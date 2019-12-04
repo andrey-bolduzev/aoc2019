@@ -4,14 +4,23 @@ use std::iter::Iterator;
 pub fn read_ints_from_file(filename: &str) -> Vec<i32> {
     read_file(filename)
         .lines()
-        .filter_map(|x| x.parse::<i32>().ok())
+        .map(|x| x.parse::<i32>().unwrap())
         .collect()
 }
 
 pub fn read_comma_separated(filename: &str) -> Vec<usize> {
     read_file(filename)
         .split(',')
-        .filter_map(|x| x.parse::<usize>().ok())
+        .map(|x| x.trim())
+        .map(|x| x.parse::<usize>().unwrap())
+        .collect()
+}
+
+pub fn read_comma_separated_int(filename: &str) -> Vec<i32> {
+    read_file(filename)
+        .split(',')
+        .map(|x| x.trim())
+        .map(|x| x.parse::<i32>().unwrap())
         .collect()
 }
 
