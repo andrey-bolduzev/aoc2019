@@ -24,6 +24,14 @@ pub fn read_comma_separated_int(filename: &str) -> Vec<i32> {
         .collect()
 }
 
+pub fn read_comma_separated_long(filename: &str) -> Vec<i64> {
+    read_file(filename)
+        .split(',')
+        .map(|x| x.trim())
+        .map(|x| x.parse::<i64>().unwrap())
+        .collect()
+}
+
 pub fn read_pairs(filename: &str) -> Vec<(String, String)> {
     read_file(filename)
         .lines()

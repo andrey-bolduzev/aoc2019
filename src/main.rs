@@ -7,6 +7,7 @@ mod day5;
 mod day6;
 mod day7;
 mod day8;
+mod day9;
 
 use common::*;
 
@@ -19,6 +20,7 @@ fn main() {
     print_day_six();
     print_day_seven();
     print_day_eight();
+    print_day_nine();
 }
 
 fn print_day_one() {
@@ -85,5 +87,13 @@ fn print_day_eight() {
     println!("part one: {}", day8::first(input.trim().to_string()));
     println!("part two:");
     day8::second(input.trim().to_string());
+    println!();
+}
+
+fn print_day_nine() {
+    println!("day nine:");
+    let input = &read_file("src/day9/input");
+    println!("part one: {}", day9::first(input, 1));
+    println!("part two: {}", day9::first(input, 2));
     println!();
 }
