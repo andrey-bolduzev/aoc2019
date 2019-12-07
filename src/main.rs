@@ -5,6 +5,7 @@ mod day3;
 mod day4;
 mod day5;
 mod day6;
+mod day7;
 
 use common::*;
 
@@ -15,6 +16,7 @@ fn main() {
     print_day_four();
     print_day_five();
     print_day_six();
+    print_day_seven();
 }
 
 fn print_day_one() {
@@ -64,5 +66,13 @@ fn print_day_six() {
     let input = &read_pairs("src/day6/input");
     println!("part one: {}", day6::first(input));
     println!("part two: {}", day6::second(input));
+    println!();
+}
+
+fn print_day_seven() {
+    println!("day seven:");
+    let input = &read_comma_separated_int("src/day7/input");
+    println!("part one: {}", day7::first(input));
+    println!("part two: {}", day7::second(input));
     println!();
 }
