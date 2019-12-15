@@ -1,4 +1,30 @@
-pub fn first(input: &[usize], replacement1: usize, replacement2: usize) -> usize {
+#[aoc_generator(day2)]
+pub fn input_generator(input: &str) -> Vec<usize> {
+    input
+        .trim()
+        .split(",")
+        .map(|mass| mass.parse::<usize>().unwrap())
+        .collect()
+}
+
+#[aoc(day2, part1)]
+pub fn first(input: &[usize]) -> usize {
+    solve(input, 12, 2)
+}
+
+#[aoc(day2, part2)]
+pub fn second(input: &[usize]) -> usize {
+    for i in 0..=99 {
+        for j in 0..=99 {
+            if solve(input, i, j) == 19690720 {
+                return 100 * i + j;
+            }
+        }
+    }
+    panic!()
+}
+
+pub fn solve(input: &[usize], replacement1: usize, replacement2: usize) -> usize {
     let mut seq = input.to_vec();
     seq[1] = replacement1;
     seq[2] = replacement2;
@@ -21,17 +47,6 @@ pub fn first(input: &[usize], replacement1: usize, replacement2: usize) -> usize
     seq[0]
 }
 
-pub fn second(input: &[usize]) -> usize {
-    for i in 0..=99 {
-        for j in 0..=99 {
-            if first(input, i, j) == 19690720 {
-                return 100 * i + j;
-            }
-        }
-    }
-    panic!()
-}
-
 #[cfg(test)]
 mod tests {
 
@@ -48,6 +63,6 @@ mod tests {
         )
     ]
     fn part_one_examples(input: Vec<usize>, expected: usize) {
-        assert_eq!(first(&input, 0, 0), expected);
+        assert_eq!(solve(&input, 0, 0), expected);
     }
 }

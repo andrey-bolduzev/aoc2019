@@ -1,7 +1,22 @@
 use std::collections::HashMap;
 use std::collections::VecDeque;
 
-pub fn first(input: &str, init: i64) -> i64 {
+#[aoc_generator(day9)]
+pub fn input_generator(input: &str) -> String {
+    input.trim().to_owned()
+}
+
+#[aoc(day9, part1)]
+pub fn first(input: &str) -> i64 {
+    solve(input, 1)
+}
+
+#[aoc(day9, part2)]
+pub fn second(input: &str) -> i64 {
+    solve(input, 2)
+}
+
+pub fn solve(input: &str, init: i64) -> i64 {
     let mut vm = IntcodeVM::new();
     vm.init(input, init);
 

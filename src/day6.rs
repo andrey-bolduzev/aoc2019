@@ -1,10 +1,21 @@
 use std::collections::HashMap;
 use std::collections::HashSet;
 
+#[aoc_generator(day6)]
+pub fn input_generator(input: &str) -> Vec<(String, String)> {
+    input
+        .lines()
+        .map(|l| l.split(')'))
+        .map(|mut i| (i.next().unwrap().to_string(), i.next().unwrap().to_string()))
+        .collect::<Vec<_>>()
+}
+
+#[aoc(day6, part1)]
 pub fn first(pairs: &[(String, String)]) -> usize {
     build_extended(pairs).values().map(|x| x.len()).sum()
 }
 
+#[aoc(day6, part2)]
 pub fn second(pairs: &[(String, String)]) -> usize {
     let map = build_extended(pairs);
     let you_nodes: HashSet<_> = map["YOU"].iter().collect();

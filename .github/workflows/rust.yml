@@ -3,13 +3,18 @@ name: Rust
 on: [push]
 
 jobs:
-  build:
-
+  build_and_run:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
-    - name: Run release
-      run: cargo run --release
-    - name: Run tests
-      run: cargo test --verbose
+      - uses: actions/checkout@v1
+      - name: Run release
+        run: cargo run --release
+
+  tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Run tests
+        run: cargo test

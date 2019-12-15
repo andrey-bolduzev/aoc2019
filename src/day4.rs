@@ -1,11 +1,22 @@
 use std::collections::HashMap;
+use std::ops::RangeInclusive;
 
-pub fn first() -> usize {
-    (367479..=893698_usize).filter(matches_first).count()
+#[aoc_generator(day4)]
+pub fn input_generator(_input: &str) -> RangeInclusive<usize> {
+    367479..=893698_usize
 }
 
-pub fn second() -> usize {
-    (367479..=893698_usize).filter(matches_second).count()
+#[aoc(day4, part1)]
+pub fn first(range: &RangeInclusive<usize>) -> usize {
+    RangeInclusive::new(*range.start(), *range.end())
+        .filter(matches_first)
+        .count()
+}
+
+#[aoc(day4, part2)]
+pub fn second(range: &RangeInclusive<usize>) -> usize {
+    let new = RangeInclusive::new(*range.start(), *range.end());
+    new.filter(matches_second).count()
 }
 
 fn matches_first(candidate: &usize) -> bool {

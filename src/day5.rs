@@ -1,4 +1,23 @@
-pub fn second(input: &[i32], init: i32) -> i32 {
+#[aoc_generator(day5)]
+pub fn input_generator(input: &str) -> Vec<i32> {
+    input
+        .trim()
+        .split(",")
+        .map(|x| x.parse::<i32>().unwrap())
+        .collect()
+}
+
+#[aoc(day5, part1)]
+pub fn first(input: &[i32]) -> i32 {
+    solve(input, 1)
+}
+
+#[aoc(day5, part2)]
+pub fn second(input: &[i32]) -> i32 {
+    solve(input, 5)
+}
+
+fn solve(input: &[i32], init: i32) -> i32 {
     let mut seq = input.to_vec();
 
     let mut index = 0;

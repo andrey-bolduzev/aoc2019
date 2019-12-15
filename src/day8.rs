@@ -3,7 +3,13 @@ use itertools::Itertools;
 const WIDTH: usize = 25;
 const LAYER_LEN: usize = WIDTH * 6;
 
-pub fn first(input: String) -> usize {
+#[aoc_generator(day8)]
+pub fn input_generator(input: &str) -> String {
+    input.trim().to_owned()
+}
+
+#[aoc(day8, part1)]
+pub fn first(input: &String) -> usize {
     let vec: Vec<_> = input.chars().collect();
     let layers: Vec<_> = vec.chunks(LAYER_LEN).collect();
     let min_layer = layers
@@ -15,7 +21,8 @@ pub fn first(input: String) -> usize {
     ones * twos
 }
 
-pub fn second(input: String) {
+#[aoc(day8, part2)]
+pub fn second(input: &String) -> usize {
     let vec: Vec<_> = input.chars().collect();
     let layers: Vec<_> = vec.chunks(LAYER_LEN).collect();
     let mut output: Vec<_> = Vec::new();
@@ -24,11 +31,11 @@ pub fn second(input: String) {
         for layer in &layers {
             match layer[i] {
                 '0' => {
-                    output.push('_');
+                    output.push(' ');
                     break;
                 }
                 '1' => {
-                    output.push('1');
+                    output.push('#');
                     break;
                 }
                 _ => {}
@@ -40,4 +47,5 @@ pub fn second(input: String) {
         .chunks(WIDTH)
         .map(|chunk| chunk.iter().join(""))
         .for_each(|row| println!("{}", row));
+    0
 }

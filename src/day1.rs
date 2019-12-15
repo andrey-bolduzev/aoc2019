@@ -1,10 +1,21 @@
 use std::convert::identity;
 use std::ops::FnMut;
 
+#[aoc_generator(day1)]
+pub fn input_generator(input: &str) -> Vec<i32> {
+    input
+        .trim()
+        .lines()
+        .map(|mass| mass.parse::<i32>().unwrap())
+        .collect()
+}
+
+#[aoc(day1, part1)]
 pub fn first(input: &[i32]) -> i32 {
     process(input, identity)
 }
 
+#[aoc(day1, part2)]
 pub fn second(input: &[i32]) -> i32 {
     process(input, fuel_rec)
 }

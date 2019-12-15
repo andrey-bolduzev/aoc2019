@@ -1,5 +1,15 @@
 use std::collections::HashSet;
 
+#[aoc_generator(day7)]
+pub fn input_generator(input: &str) -> Vec<i32> {
+    input
+        .split(',')
+        .map(|x| x.trim())
+        .map(|x| x.parse::<i32>().unwrap())
+        .collect()
+}
+
+#[aoc(day7, part1)]
 pub fn first(input: &[i32]) -> i32 {
     let mut outputs = Vec::new();
     for phase_config in 01234..=43210 {
@@ -26,6 +36,7 @@ pub fn first(input: &[i32]) -> i32 {
     outputs.iter().max_by_key(|x| x.1).map(|x| x.1).unwrap()
 }
 
+#[aoc(day7, part2)]
 pub fn second(input: &[i32]) -> i32 {
     let mut outputs = Vec::new();
     for phase_config in 56789..=98765 {
